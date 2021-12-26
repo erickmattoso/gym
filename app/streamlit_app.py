@@ -66,6 +66,7 @@ def page_settings():
         minimo = df_exercises["Date"].min()
         maximo = df_exercises["Date"].max()
         st.write(f"You should look between {minimo} and {maximo}.")
+        # editar
 
 
 if __name__ == "__main__":
