@@ -21,7 +21,7 @@ def page_settings():
     st.title("90 days chalenge")
 
     def fetch_and_clean_data1():
-        df = pd.read_csv("data/exercises.csv", index_col=[0])
+        df = pd.read_csv("exercises.csv", index_col=[0])
         return df
     df_exercises = fetch_and_clean_data1()
     today = st.sidebar.date_input("Date", date.today())
@@ -42,7 +42,7 @@ def page_settings():
         st.text(" \n")
         st.text(" \n")
         st.title("The 3000 Calorie diet meal plan")
-        df_nutrition = pd.read_csv(f"data/food.csv", index_col=[0])
+        df_nutrition = pd.read_csv(f"food.csv", index_col=[0])
         df_by_day = df_nutrition[df_nutrition["day"] == int(days)]
         labels = ["Calories", "Carbs", "Fat", "Protein", "Fiber"]
         nutri_values = df_by_day[labels].sum(axis=0)
