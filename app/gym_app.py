@@ -2,6 +2,15 @@ import pandas as pd
 import streamlit as st
 from datetime import date
 import matplotlib.pyplot as plt
+# Import Libs
+from folium.plugins import FastMarkerCluster
+from st_aggrid import AgGrid, GridUpdateMode, GridOptionsBuilder
+import base64
+import folium
+import io
+import pandas as pd
+import seaborn as sns
+import streamlit as st
 
 
 def main():
@@ -20,10 +29,10 @@ def main():
 def page_settings():
     st.title("90 days chalenge")
 
-    def fetch_and_clean_data1():
-        df = pd.read_csv("exercises.csv", index_col=[0])
+    def fetch_and_clean_data1(file):
+        df = pd.read_csv(file, index_col=[0])
         return df
-    df_exercises = fetch_and_clean_data1()
+    df_exercises = fetch_and_clean_data1('exercises.csv')
     today = st.sidebar.date_input("Date", date.today())
     df_exer_html = df_exercises[df_exercises["Date"]
                                 == today.strftime("%Y-%m-%d")]
@@ -42,7 +51,7 @@ def page_settings():
         st.text(" \n")
         st.text(" \n")
         st.title("The 3000 Calorie diet meal plan")
-        df_nutrition = pd.read_csv(f"food.csv", index_col=[0])
+        df_nutrition = fetch_and_clean_data1('food.csv')
         df_by_day = df_nutrition[df_nutrition["day"] == int(days)]
         labels = ["Calories", "Carbs", "Fat", "Protein", "Fiber"]
         nutri_values = df_by_day[labels].sum(axis=0)
