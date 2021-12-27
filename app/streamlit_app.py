@@ -42,8 +42,7 @@ def page_settings():
         st.text(" \n")
         st.text(" \n")
         st.title("The 3000 Calorie diet meal plan")
-        df_nutrition = pd.read_csv(
-            f"data/food.csv", index_col=[0])
+        df_nutrition = pd.read_csv(f"data/food.csv", index_col=[0])
         df_by_day = df_nutrition[df_nutrition["day"] == int(days)]
         labels = ["Calories", "Carbs", "Fat", "Protein", "Fiber"]
         nutri_values = df_by_day[labels].sum(axis=0)
@@ -66,7 +65,6 @@ def page_settings():
         minimo = df_exercises["Date"].min()
         maximo = df_exercises["Date"].max()
         st.write(f"You should look between {minimo} and {maximo}.")
-        #
 
 
 if __name__ == "__main__":
